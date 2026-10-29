@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VANTOR V12
 
-## Getting Started
+Web conceptual de automoción con un coche deportivo V12 en 3D, cuya cámara se anima con el scroll. Es un **proyecto ficticio** de portfolio: el producto, las cifras, los precios y los datos de contacto no son reales.
 
-First, run the development server:
+**Demo:** https://vantor-v12.vercel.app
+
+<!-- CAPTURA: añade aquí una imagen de la portada cuando la tengas, por ejemplo ![Portada](docs/portada.webp) -->
+
+## Qué incluye
+
+- Escena 3D con un coche V12 y cámara controlada por el scroll.
+- Secciones: Diseño, Prestaciones, Especificaciones, Detalles y Contacto.
+- Formulario de contacto **simulado**: no envía ni guarda ningún dato.
+- Modo debug con paneles de ajuste (cámara, luces y coche), que solo se activa añadiendo `?debug=1` a la dirección.
+
+## Tecnologías
+
+- [Next.js](https://nextjs.org) 16 y React
+- [three](https://threejs.org), [@react-three/fiber](https://r3f.docs.pmnd.rs) y [@react-three/drei](https://github.com/pmndrs/drei)
+- [leva](https://github.com/pmndrs/leva) (paneles de debug) y [zustand](https://github.com/pmndrs/zustand) (estado)
+- TypeScript
+
+## Cómo ejecutarlo en local
+
+Necesitas [Node.js](https://nodejs.org) instalado.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000 en el navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para probar la versión de producción:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Compila para producción |
+| `npm run start` | Sirve la versión compilada |
+| `npm run lint` | Revisa el código con ESLint |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Créditos
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Modelo 3D generado con [Tripo AI](https://www.tripo3d.ai), a partir de una imagen creada con Gemini.
 
-## Deploy on Vercel
+## Autor
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Izan Hernández ([@izanhg2411](https://github.com/izanhg2411)), proyecto realizado durante los estudios de DAW.

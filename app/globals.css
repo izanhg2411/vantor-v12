@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #e5e5e5;
+  /* Único color de acento del sistema */
+  --accent: #ff4d2e;
+  --accent-soft: rgba(255, 77, 46, 0.14);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  /* Fase 3: el scroll vertical es el motor de toda la experiencia. */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+::selection {
+  background: var(--accent);
+  color: #050505;
+}
+
+/* --------------------------------------------------------------------- */
+/* Reveal (IntersectionObserver)                                          */
+/* --------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------- */
+/* Utilidades de sección                                                   */
+/* --------------------------------------------------------------------- */
+.section {
+  position: relative;
+  z-index: 10;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding: 9rem 6rem;
+  }
+}
+
+/* Velo suave para que el texto sea legible sin tapar el coche con cajas. */
+.veil {
+  background: linear-gradient(
+    to right,
+    rgba(5, 5, 5, 0.86) 0%,
+    rgba(5, 5, 5, 0.6) 45%,
+    rgba(5, 5, 5, 0) 78%
+  );
+}
+
+.veil-right {
+  background: linear-gradient(
+    to left,
+    rgba(5, 5, 5, 0.86) 0%,
+    rgba(5, 5, 5, 0.6) 45%,
+    rgba(5, 5, 5, 0) 78%
+  );
+}
+
+.veil-bottom {
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 5, 0.92) 0%,
+    rgba(5, 5, 5, 0.55) 50%,
+    rgba(5, 5, 5, 0) 100%
+  );
+}
+
+@media (max-width: 767px) {
+  /* En móvil el coche queda detrás: velo vertical, nunca lateral. */
+  .veil,
+  .veil-right {
+    background: linear-gradient(
+      to top,
+      rgba(5, 5, 5, 0.92) 0%,
+      rgba(5, 5, 5, 0.62) 55%,
+      rgba(5, 5, 5, 0.05) 100%
+    );
+  }
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* Indicador de scroll */
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.scroll-hint {
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------- */
+/* Accesibilidad                                                           */
+/* --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .scroll-hint {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
